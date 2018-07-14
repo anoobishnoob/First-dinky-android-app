@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 public class FunFactsActivity extends AppCompatActivity {
     public static final String TAG = FunFactsActivity.class.getSimpleName(); // this is a better method using string for refactoring purposes
+    private static final String KEY_FACT = "KEY_FACT";
+    private static final String KEY_COLOR = "Key_Color";
     private FactBook factBook = new FactBook();
     private ColorWheel colorwheel = new ColorWheel();
 
@@ -20,6 +22,25 @@ public class FunFactsActivity extends AppCompatActivity {
     private TextView factTextView;
     private Button showFactButton;
     private RelativeLayout relativeLayout;
+    private String mFact;
+    private int mColor;
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString(KEY_FACT, mFact);
+        outState.putInt(KEY_COLOR, mColor);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        mFact = savedInstanceState.getString(KEY_FACT, mFact);
+        mColor = savedInstanceState.getInt(KEY_COLOR, mColor);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +55,14 @@ public class FunFactsActivity extends AppCompatActivity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String fact = factBook.getFact();
+                mFact = factBook.getFact();
                 // update the screen with our new fact
-                factTextView.setText(fact);
+                factTextView.setText(mFact);
 
-                int color = colorwheel.getColor();
-                relativeLayout.setBackgroundColor(color);
+                mColor = colorwheel.getColor();
+                relativeLayout.setBackgroundColor(mColor);
 
-                showFactButton.setTextColor(color);
+                showFactButton.setTextColor(mColor);
             }
         };
         showFactButton.setOnClickListener(listener);

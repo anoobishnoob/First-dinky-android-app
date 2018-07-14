@@ -27,6 +27,11 @@ public class ColorWheel {
      };
 
     // Methods - Actions the object can take
+
+    /**
+     *
+     * @return
+     */
      int getColor(){
         // randomly selects a color
         Random randomGenerator = new Random();

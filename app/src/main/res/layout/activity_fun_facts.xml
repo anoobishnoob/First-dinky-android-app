@@ -30,7 +30,7 @@
         android:text="Ants stretch when they wake up in the morning."
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="24sp" 
+        android:textSize="24sp"
         android:contentDescription="hf_no_overlay"/>
 
     <Button
@@ -42,7 +42,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="12dp"
         android:background="@android:color/background_light"
-        android:text="Show another Fun Fact" 
+        android:text="Show another Fun Fact"
         android:contentDescription="hf_use_description|Fun Fact"
         />
 
