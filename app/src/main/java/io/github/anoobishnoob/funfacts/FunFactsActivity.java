@@ -13,15 +13,19 @@ import android.widget.Toast;
 
 public class FunFactsActivity extends AppCompatActivity {
     public static final String TAG = FunFactsActivity.class.getSimpleName(); // this is a better method using string for refactoring purposes
-    private static final String KEY_FACT = "KEY_FACT";
-    private static final String KEY_COLOR = "Key_Color";
+    //private static final String KEY_FACT = "KEY_FACT";
+    //private static final String KEY_COLOR = "Key_Color";
     private FactBook factBook = new FactBook();
     private ColorWheel colorwheel = new ColorWheel();
 
     //declare our view variables
-    private TextView factTextView;
-    private Button showFactButton;
-    private RelativeLayout relativeLayout;
+    private static final String KEY_FACT = "KEY_FACT";
+    private static final String KEY_COLOR = "KEY_COLOR";
+    private FactBook mFactBook = new FactBook();
+    private ColorWheel mColorWheel = new ColorWheel();
+    private RelativeLayout mRelativeLayout;
+    private TextView mFactLabel;
+    private Button mShowFactButton;
     private String mFact;
     private int mColor;
 
@@ -38,8 +42,11 @@ public class FunFactsActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        mFact = savedInstanceState.getString(KEY_FACT, mFact);
-        mColor = savedInstanceState.getInt(KEY_COLOR, mColor);
+        mFact = savedInstanceState.getString(KEY_FACT);
+        mFactLabel.setText(mFact);
+        mColor = savedInstanceState.getInt(KEY_COLOR);
+        mShowFactButton = (Button) findViewById(R.id.showFactButton);
+        mRelativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
     }
 
     @Override
@@ -48,24 +55,24 @@ public class FunFactsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fun_facts);
 
         // Assign the views from the layout file to the corresponding variables
-        factTextView = (TextView) findViewById(R.id.factTextView);
-        showFactButton = (Button) findViewById(R.id.showFactButton);
-        relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+        mFactLabel = (TextView) findViewById(R.id.factTextView);
+        mShowFactButton = (Button) findViewById(R.id.showFactButton);
+        mRelativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mFact = factBook.getFact();
                 // update the screen with our new fact
-                factTextView.setText(mFact);
+                mFactLabel.setText(mFact);
 
                 mColor = colorwheel.getColor();
-                relativeLayout.setBackgroundColor(mColor);
+                mRelativeLayout.setBackgroundColor(mColor);
 
-                showFactButton.setTextColor(mColor);
+                mShowFactButton.setTextColor(mColor);
             }
         };
-        showFactButton.setOnClickListener(listener);
+        mShowFactButton.setOnClickListener(listener);
 
 
         //Toast.makeText(this, "this is a little toast message", Toast.LENGTH_SHORT).show();
