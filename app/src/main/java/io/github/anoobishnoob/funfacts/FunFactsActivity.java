@@ -26,8 +26,8 @@ public class FunFactsActivity extends AppCompatActivity {
     private RelativeLayout mRelativeLayout;
     private TextView mFactLabel;
     private Button mShowFactButton;
-    private String mFact;
-    private int mColor;
+    private String mFact = mFactBook.mFacts[0]; // these next two lines stop the app from crashing if you start the app and rotate it
+    private int mColor = Color.parseColor(mColorWheel.mColors[8]);
 
 
     @Override
@@ -62,13 +62,11 @@ public class FunFactsActivity extends AppCompatActivity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mFact = factBook.getFact();
-                // update the screen with our new fact
+                mFact = factBook.getFact(); // update the screen with our new fact
                 mFactLabel.setText(mFact);
 
                 mColor = colorwheel.getColor();
                 mRelativeLayout.setBackgroundColor(mColor);
-
                 mShowFactButton.setTextColor(mColor);
             }
         };

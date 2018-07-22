@@ -22,12 +22,16 @@ public class FactBook {
             "Samme likes making bullshit apps for practice"
 
     };
+    public String[] mFacts;
 
     // Methods - Actions the object can take
      String getFact(){
+         String fact = "";
         // randomly select a fact
         Random randomGenerator = new Random();
         int randomNumber = randomGenerator.nextInt(facts.length);
-        return facts[randomNumber];
+        fact = mFacts[randomNumber];
+
+        return fact;
     }
 }

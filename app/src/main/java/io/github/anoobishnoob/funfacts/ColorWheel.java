@@ -25,6 +25,7 @@ public class ColorWheel {
             "#f092b0", // pink
             "#b7c0c7"  // light gray
      };
+    public String[] mColors;
 
     // Methods - Actions the object can take
 
@@ -32,13 +33,17 @@ public class ColorWheel {
      *
      * @return
      */
-     int getColor(){
-        // randomly selects a color
-        Random randomGenerator = new Random();
-        int randomNumber = randomGenerator.nextInt(colors.length);
-        int color = Color.parseColor(colors[randomNumber]);
-        return color;
+    public int getColor() {
+        String color = "";
 
+        // Randomly select a fact
+        Random randomGenerator = new Random(); // Construct a new Random number generator
+        int randomNumber = randomGenerator.nextInt(mColors.length);
+
+        color = mColors[randomNumber];
+        int colorAsInt = Color.parseColor(color);
+
+        return colorAsInt;
     }
 
 
